@@ -27,10 +27,4 @@ describe('US012 - Funcionalidade: Cadastro de Membros', () => {
     cy.get('#signup-button').click()
     cy.get('#signup-response').should('contain', 'Erro ao salvar o cadastro.')
   })
-
-  it('', () => {
-    cy.visit('http://127.0.0.1:8080/')
-    cy.get('#signup-button').click()
-    cy.get('#signup-response').should('contain', '')
-  })
 })
