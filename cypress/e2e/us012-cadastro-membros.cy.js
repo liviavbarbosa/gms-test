@@ -5,6 +5,10 @@ describe('US012 - Funcionalidade: Cadastro de Membros', () => {
     cy.visit('/')
   });
 
+  afterEach(() => {
+    cy.screenshot()
+  });
+
   it('CT01 - Cadastro de usuário válido', () => {
     var email = `livia${Date.now()}@teste.com`
     cy.preencherCadastro('Lívia', 'Barbosa', email, '5512345678', 'Teste!70')

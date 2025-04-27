@@ -5,6 +5,10 @@ describe('US001 - Funcionalidade: Busca de filmes', () => {
         cy.visit('/')
     });
 
+    afterEach(() => {
+        cy.screenshot()
+    });
+
     it('CT01 - Busca de filmes com palavra-chave válida', () => {
         cy.preencherEBuscar("The Matrix")
         cy.get('#results-section').should('contain', 'The Matrix')
@@ -33,7 +37,7 @@ describe('US001 - Funcionalidade: Busca de filmes', () => {
     })
 
     it('CT06 - Resultado de busca em tempo real', () => {
-        cy.get('#search-input').type('Harry').wait(500).get('#results-section').should('contain', 'Harry'); 
+        cy.get('#search-input').type('Harry').wait(500).get('#results-section').should('contain', 'Harry');
     })
 
     it('CT08 - Suporte à rolagem infinita', () => {

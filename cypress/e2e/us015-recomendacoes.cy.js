@@ -2,9 +2,13 @@
 
 describe('US015 - Funcionalidade: Recomendações', () => {
     beforeEach(() => {
-      cy.visit('/')
+        cy.visit('/')
     });
-  
+
+    afterEach(() => {
+        cy.screenshot()
+    });
+
     it('CT01 - Exibição das recomendações do dia', () => {
         cy.get('#recommendations-section p').should('exist')
         cy.get('#recommendations-section img').should('exist')
