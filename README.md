@@ -17,9 +17,16 @@ cd gms-test
 ```
 npm install cypress
 ```
-```
-npx cypress open
-```
-Após essas etapas, uma janela do Cypress será exibida. Selecione a opção "E2E Testing" e, logo após, escolha o navegador de sua preferência.
 
-**Os arquivos de teste criados estarão listados para execução, com seus respectivos resultados visíveis após cada execução.**
+- Se você deseja apenas rodar os testes, execute o seguinte comando:
+    ```
+    npm run test
+    ```
+
+- Se você deseja abrir o Cypress para analisar os testes, execute o seguinte comando:
+    ```
+    npx cypress open
+    ```
+    Após essa etapa, uma janela do Cypress será exibida. Selecione a opção "E2E Testing" e, logo após, escolha o navegador de sua preferência.
+
+    **Os arquivos de teste criados estarão listados para execução, com seus respectivos resultados visíveis após cada execução.**
