@@ -16,3 +16,17 @@ Cypress.Commands.add('preencherCadastro', (nome, sobrenome, email, telefone, sen
     }
     cy.get('#signup-button').click()
 })
+
+Cypress.Commands.add('preencherEBuscar', (titulo) => {
+    if (titulo !== null) {
+        cy.get('#search-input').type(titulo)
+    }
+    cy.get('#search-button').click()
+})
+
+Cypress.Commands.add('preencherELimpar', (titulo) => {
+    if (titulo !== null) {
+        cy.get('#search-input').type(titulo)
+    }
+    cy.get('#clear-button').click()
+})

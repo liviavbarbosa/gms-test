@@ -1,41 +1,43 @@
 /// <reference types="cypress"/>
 
 describe('US001 - Funcionalidade: Busca de filmes', () => {
-    it('Busca de filmes com palavra-chave válida/Exibição correta das informações dos filmes', () => {
-      cy.visit('http://127.0.0.1:8080/')
-      cy.get('#search-input').type("The Matrix")
-      cy.get('#search-button').click()
+    beforeEach(() => {
+        cy.visit('/')
+    });
+
+    it('CT01 - Busca de filmes com palavra-chave válida', () => {
+        cy.preencherEBuscar("The Matrix")
+        cy.get('#results-section').should('contain', 'The Matrix')
     })
 
-    it('Busca de filmes com palavra-chave válida', () => {
-        cy.visit('http://127.0.0.1:8080/')
-        cy.get('#search-input').type("A Era do Gelo 3")
-        cy.get('#search-button').click()
+    it('CT02 - Busca de filmes sem resultados', () => {
+        cy.preencherEBuscar("A Era do Gelo")
         cy.get('#results-section > p').should('contain', 'Filme não encontrado.')
     })
 
-    it('Limpeza de campo de busca de filmes', () => {
-        cy.visit('http://127.0.0.1:8080/')
-        cy.get('#search-input').type("A Era do Gelo 3")
-        cy.get('#clear-button').click()
+    it('CT03 - Limpeza de campo de busca de filmes', () => {
+        cy.preencherELimpar("Inception")
         cy.get('#search-input').should('be.empty')
     })
 
-    it('Busca de filmes sem inserir palavra-chave', () => {
-        cy.visit('http://127.0.0.1:8080/')
-        cy.get('#clear-button').click()
+    it('CT04 - Busca de filmes sem inserir palavra-chave', () => {
+        cy.preencherEBuscar(null)
+        cy.get('#results-section img').get('#popcorn').should('exist')
     })
 
-    it('Resultado de busca em tempo real', () => {
-        cy.visit('http://127.0.0.1:8080/')
-        cy.get('#search-input').type("Incep") // Só escrevendo, ele ainda não retorna a lista dos títulos que contém essa palavra-chave
-        cy.get('#search-button').click()
-        cy.get('#results-section > p').should('not.contain', 'Filme não encontrado.')
+    it('CT05 - Exibição correta das informações dos filmes', () => {
+        cy.preencherEBuscar('Inception')
+        cy.get('#results-section').should('contain', 'Inception')
+        cy.get('#results-section img').should('exist')
+        cy.get('#results-section').should('contain', 'Sinopse')
     })
 
-    it('Suporte à paginação ou rolagem infinita', () => {
-        cy.visit('http://127.0.0.1:8080/')
-        cy.get('#search-input').type("Jurassic Park")
-        cy.get('#search-button').click()
+    it('CT06 - Resultado de busca em tempo real', () => {
+        cy.get('#search-input').type('Harry').wait(500).get('#results-section').should('contain', 'Harry'); 
+    })
+
+    it('CT08 - Suporte à rolagem infinita', () => {
+        cy.preencherEBuscar("Jurassic Park")
+        cy.get('#results-section img').should('have.length.at.least', 10)
     })
 })
