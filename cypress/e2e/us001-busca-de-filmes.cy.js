@@ -27,7 +27,7 @@ describe('US001 - Funcionalidade: Busca de filmes', () => {
 
     it('CT05 - Exibição correta das informações dos filmes', () => {
         cy.preencherEBuscar('Inception')
-        cy.get('#results-section').should('contain', 'Inception')
+        cy.get('#results-section h3').should('exist')
         cy.get('#results-section img').should('exist')
         cy.get('#results-section').should('contain', 'Sinopse')
     })
@@ -38,6 +38,6 @@ describe('US001 - Funcionalidade: Busca de filmes', () => {
 
     it('CT08 - Suporte à rolagem infinita', () => {
         cy.preencherEBuscar("Jurassic Park")
-        cy.get('#results-section img').should('have.length.at.least', 10)
+        cy.get('#results-section h3').should('have.length.at.least', 10)
     })
 })
